@@ -6,13 +6,9 @@ import { useHistory } from 'react-router-dom';
 function HomeButton(){
 
 const history = useHistory();
-
-const sendToHome = () =>{
-    history.push(`/home`)
-    }
     
 return(
-        <button class = "btn" onClick={() =>sendToHome}>Home</button>
+        <button className = "btn" onClick={history.push('/home')}>Home</button>
         )
 }
 
