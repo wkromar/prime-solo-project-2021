@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AllSnacks from '../AllSnacks/AllSnacks';
 
 import './App.css';
 
@@ -100,6 +101,23 @@ function App() {
             authRedirect="/user"
           >
             <LandingPage />
+          </ProtectedRoute>
+
+          {/* HERE ARE THE ROUTES I MAKE */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/allSnacks"
+          >
+            <AllSnacks />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/homePage"
+          >
+            <HomePage/>
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
