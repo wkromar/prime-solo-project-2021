@@ -1,3 +1,7 @@
+import {takeEvery} from 'redux-saga/effects';
+import axios from 'axios';
+import {put} from 'redux-saga/effects';
+
 function* postFavorite(action){
     try {
         console.log('in POST favorite', action.payload)
@@ -8,9 +12,6 @@ function* postFavorite(action){
         console.log(error)
     }
 }
-
-
-import {put} from 'redux-saga/effects';
 
 function* getFavorite() {
     try{

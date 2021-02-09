@@ -107,18 +107,12 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/allSnacks"
+            path="/AllSnacks"
+            
           >
             <AllSnacks />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/homePage"
-          >
-            <HomePage/>
-          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

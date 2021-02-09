@@ -10,7 +10,7 @@ function HomeButton(){
 const history = useHistory();
     
 return(
-        <button className = "btn" onClick={history.push('/home')}>Home</button>
+        <button className = "btn" onClick={()=>{history.push('/homePage')}}>Home</button>
         )
 }
 
