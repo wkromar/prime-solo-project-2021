@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AllSnacks from '../AllSnacks/AllSnacks';
+import AdminPage from '../AdminPage/AdminPage';
+import EditSnack from '../EditSnackPage/EditSnackPage';
 
 import './App.css';
 
@@ -103,7 +105,9 @@ function App() {
             <LandingPage />
           </ProtectedRoute>
 
-          {/* HERE ARE THE ROUTES I MAKE */}
+
+
+          {/* HERE ARE THE ROUTES I MAKE ---------------------------------------*/}
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
@@ -111,6 +115,24 @@ function App() {
             
           >
             <AllSnacks />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/admin"
+            
+          >
+            <AdminPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/editSnack"
+            
+          >
+            <EditSnack />
           </ProtectedRoute>
 
 

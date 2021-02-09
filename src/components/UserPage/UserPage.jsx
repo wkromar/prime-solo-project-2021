@@ -51,6 +51,7 @@ function UserPage() {
                 <button className = "btn" onClick={()=>{history.push('/AllSnacks')}}>All Snacks</button>
                 <p> My Profile</p>
                 <button className = "btn" onClick={()=>{history.push('/profile')}}>Profile</button>
+                <button className = "btn" onClick={()=>{history.push('/admin')}}>Temporary Admin Button</button>
     </div>
   );
 }
