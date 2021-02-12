@@ -7,10 +7,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function AllSnacks() {
+  //hooks
   const history = useHistory();
   const dispatch = useDispatch();
   console.log("in All Snacks");
+
+  //reducers
   const snackList = useSelector((store) => store.snackReducer);
+  const AllSnacks = useSelector((store) => store.allSnackReducer);
+
+  //variables and constants
   const [isVisible, setIsVisible] = useState(true);
   let [searchItem, setSearchItem] = useState("");
 
@@ -69,6 +75,26 @@ function AllSnacks() {
       </form>
 
       {snackList.map((snack) => {
+        console.log(snack);
+        return (
+          <div className="searchContainer">
+            <p>
+              <img
+                src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
+              ></img>
+            </p>
+            <p>{snack.title}</p>
+            <button
+              onClick={() => addFavorite(searchItem.url, searchItem.title)}
+            >
+              Favorite
+            </button>
+            <button onClick={addToDatabase}>Go to Profile</button>
+          </div>
+        );
+      })}
+
+      {AllSnacks.map((snack) => {
         console.log(snack);
         return (
           <div className="searchContainer">

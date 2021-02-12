@@ -16,7 +16,7 @@ function* SendDatabaseSnacks() {
   try {
     console.log("getting snacks from my database");
     const response = yield axios.get("/api/search");
-    yield;
+    yield put({ type: "SEND_COPIED_SNACKS_TO_REDUCER" });
   } catch (error) {
     console.log(error);
   }
