@@ -6,7 +6,7 @@ const router = express.Router();
 
 // return all favorite snacks
 router.get('/', (req, res) => {
-  const queryText = `SELECT * FROM "user_snacklist" WHERE "snack_favorite"= 'true' ORDER BY "id";`;
+  const queryText = `SELECT * FROM "snack_list" WHERE "snack_favorite"= 'true' ORDER BY "id";`;
   pool.query(queryText)
     .then((result) => {
       res.send(result.rows)
@@ -23,16 +23,24 @@ router.post('/', (req, res) => {
   console.log(`In favorite POST: URL: ${req.body.url} Title: ${req.body.title} Likes: ${req.body.likes}`);
   const newFavorite = req.body;
   const queryText =`
-    INSERT INTO "favorite" ("url", "title")
-    VALUES ($1, $2);
+    INSERT INTO "favorite" ("url", "title", "likes)
+    VALUES ($1, $2, $3);
   `;
 
-  pool.query(queryText, [newFavorite.url, newFavorite.title])
+  pool.query(queryText, [newFavorite.url, newFavorite.title, newFavorite.likes])
   .then((response)=>{
-    console.log(response)
+    console.log('response from favorite post',response)
     res.sendStatus(200);
   }).catch((error)=>{
-    console.log(error);
+    console.log('error in favorite post',error);
     res.sendStatus(500)
   })
 });
+
+// delete a favorite
+router.delete('/', (req, res) => {
+  res.sendStatus(200);
+  console.log("Item successfully deleted");
+});
+
+module.exports = router;

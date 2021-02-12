@@ -14,6 +14,8 @@ function UserPage() {
     const history = useHistory();
     const snackReducer = useSelector((store) => store.snackReducer);
 
+    const [isVisible, setIsVisible] = useState(true);
+
     const addFavorite  = (url, title, likes) => {
         console.log(url, title, likes);
         const newFavorite = {
@@ -22,7 +24,9 @@ function UserPage() {
         likes: likes,
         }
         console.log(newFavorite);
-        dispatch({type: 'POST_FAVORITE', payload: newFavorite})}
+        dispatch({type: 'POST_FAVORITE', payload: newFavorite})
+      setIsVisible(!isVisible)}
+        
 
 
 
@@ -34,11 +38,13 @@ function UserPage() {
       <HomeButton className="btn"/>
      {snackReducer.map((searchSnack) =>{
                      return(
+                       
                          <div className = 'searchContainer'>
+
                              {/* <p><img src = {searchSnack.url} width="400" height="300"></img></p> */}
                              <p>{searchSnack.title}</p>
                              <p>{searchSnack.likes}</p>
-                             <button onClick={()=> addFavorite (searchSnack.url, searchSnack.title, searchSnack.likes)}>Favorite</button>
+                             {isVisible?<button onClick={()=> addFavorite (searchSnack.url, searchSnack.title, searchSnack.likes)}>Favorite</button>: <span>Added</span>}
                          </div>
                      )
                  })}
