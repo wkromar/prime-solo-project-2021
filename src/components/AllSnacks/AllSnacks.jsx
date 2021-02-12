@@ -14,11 +14,12 @@ function AllSnacks() {
   const [isVisible, setIsVisible] = useState(true);
   let [searchItem, setSearchItem] = useState("");
 
-  const addFavorite = (url, title) => {
+  const addFavorite = (url, title, id) => {
     console.log(url, title);
     const newFavorite = {
       url: url,
       title: title,
+      id: id,
     };
     console.log(newFavorite);
     dispatch({ type: "POST_FAVORITE", payload: newFavorite });
@@ -32,6 +33,15 @@ function AllSnacks() {
   const returnToList = () => {
     console.log("returning to List");
     history.push("/profile");
+  };
+
+  const addToDatabase = (id) => {
+    const newSnack = {
+      url: snack.imageType,
+      title: snack.title,
+      id: snack.id,
+    };
+    dispatch({ type: "ADD_TO_DATABASE", payload: action.newSnack });
   };
 
   useEffect(() => {
@@ -55,22 +65,25 @@ function AllSnacks() {
         <button className="searchButton" type="Submit">
           Search
         </button>
+        <button onClick={returnToList}>Go to Profile</button>
       </form>
 
       {snackList.map((snack) => {
         console.log(snack);
         return (
           <div className="searchContainer">
-            {/* <p><img src = {searchSnack.url} width="400" height="300"></img></p> */}
             <p>
-              {snack.title} {snack.url}
+              <img
+                src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
+              ></img>
             </p>
+            <p>{snack.title}</p>
             <button
               onClick={() => addFavorite(searchItem.url, searchItem.title)}
             >
               Favorite
             </button>
-            <button onClick={returnToList}>Go to Profile</button>
+            <button onClick={addToDatabase}>Go to Profile</button>
           </div>
         );
       })}

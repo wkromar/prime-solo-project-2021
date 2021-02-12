@@ -15,7 +15,11 @@ router.get("/:searchterm", (req, res) => {
     )
     .then((response) => {
       response.data.products.forEach((snack) => {
-        snackList.push({ url: snack.imageType, title: snack.title });
+        snackList.push({
+          url: snack.imageType,
+          title: snack.title,
+          id: snack.id,
+        });
       });
       console.log(`get response: `, snackList);
       res.send(snackList);
@@ -26,4 +30,27 @@ router.get("/:searchterm", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  console.log("adding snacks to snack_list database");
+  const newSnack = req.body;
+  const queryText = `INSERT INTO "snack_list" ("snack_image", "snack_title", "snack_id",)
+  VALUES ($1, $2, $3)`;
+  pool
+    .query(queryText, [newSnack.url, newSnack.title, newSnack.id])
+    .then((response) => {
+      console.log(response);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
+//update snack parameters through the Edit feature
+//still need to create the edit id page
+router.put("/editId", (req, res) => {
+  log(`in PUT category: editId: ${req.params.editId}, `);
+});
+module.exports = router;
 module.exports = router;

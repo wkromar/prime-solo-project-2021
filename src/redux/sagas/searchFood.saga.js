@@ -1,9 +1,7 @@
 import axios from "axios";
 import { put, takeEvery } from "redux-saga/effects";
 //this will add the searched snack into our database.
-//need to figure out how to get it to respond to categories.
-//idea: have a dropdown field each with its own string value. once selected,
-//the item will
+//now is searching th API with a search term and adding the data to the DOM
 function* getFood(action) {
   try {
     console.log("in food API");
