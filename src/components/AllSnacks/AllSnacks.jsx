@@ -11,6 +11,28 @@ function AllSnacks() {
   const dispatch = useDispatch();
   console.log("in All Snacks");
   const snackList = useSelector((store) => store.snackReducer);
+  const [isVisible, setIsVisible] = useState(true);
+  let [searchItem, setSearchItem] = useState("");
+
+  const addFavorite = (url, title) => {
+    console.log(url, title);
+    const newFavorite = {
+      url: url,
+      title: title,
+    };
+    console.log(newFavorite);
+    dispatch({ type: "POST_FAVORITE", payload: newFavorite });
+  };
+
+  const newSearch = (event) => {
+    event.preventDefault();
+    dispatch({ type: "ACTUALLY_SEARCH_API", payload: searchItem });
+  };
+
+  const returnToList = () => {
+    console.log("returning to List");
+    history.push("/profile");
+  };
 
   useEffect(() => {
     console.log("get list of snacks to appear upon load", snackList);
@@ -23,20 +45,35 @@ function AllSnacks() {
       <LogOutButton className="btn" />
       <HomeButton className="btn" />
       <p>This is where everything will be placed</p>
-      {snackList &&
-        snackList.map((snack) => {
-          console.log(snack);
-          return (
-            <div className="searchContainer">
-              {/* <p><img src = {searchSnack.url} width="400" height="300"></img></p> */}
-              <p>{snack.title}</p>
-              <p>{snack.url}</p>
-              <button onClick={() => addFavorite(snack.url, snack.title)}>
-                Favorite
-              </button>
-            </div>
-          );
-        })}
+
+      <form onSubmit={newSearch}>
+        <input
+          type="text"
+          value={searchItem}
+          onChange={(event) => setSearchItem(event.target.value)}
+        />
+        <button className="searchButton" type="Submit">
+          Search
+        </button>
+      </form>
+
+      {snackList.map((snack) => {
+        console.log(snack);
+        return (
+          <div className="searchContainer">
+            {/* <p><img src = {searchSnack.url} width="400" height="300"></img></p> */}
+            <p>
+              {snack.title} {snack.url}
+            </p>
+            <button
+              onClick={() => addFavorite(searchItem.url, searchItem.title)}
+            >
+              Favorite
+            </button>
+            <button onClick={returnToList}>Go to Profile</button>
+          </div>
+        );
+      })}
     </div>
   );
 }

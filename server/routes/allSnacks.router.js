@@ -7,18 +7,6 @@ const { default: axios } = require("axios");
 /**
  * GET route template
  */
-// router.get('/', (req, res) => {
-//   const queryText = `SELECT * FROM "snack_list" ORDER BY name ASC`;
-//   pool
-//     .query(queryText)
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch((error) => {
-//       console.log(`Error on query ${error}`);
-//       res.sendStatus(500);
-//     });
-// });
 
 //api.spoonacular.com/food/products/search_key=${process.env.SPOONTACULAR_API_KEY}&q=${req.params.searchterm}&limit=4
 //I want to grab all(100) items into my snackReducer
