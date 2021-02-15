@@ -13,8 +13,7 @@ function AllSnacks() {
   console.log("in All Snacks");
 
   //reducers
-  const snackList = useSelector((store) => store.snackReducer);
-  const AllSnacks = useSelector((store) => store.allSnackReducer);
+  const AllSnacks = useSelector((store) => store.AllSnackReducer);
 
   //variables and constants
   const [isVisible, setIsVisible] = useState(true);
@@ -31,29 +30,15 @@ function AllSnacks() {
     dispatch({ type: "POST_FAVORITE", payload: newFavorite });
   };
 
-  const newSearch = (event) => {
-    event.preventDefault();
-    dispatch({ type: "ACTUALLY_SEARCH_API", payload: searchItem });
-  };
-
-  const returnToList = () => {
-    console.log("returning to List");
+  const goToProfile = () => {
     history.push("/profile");
   };
+  // const newSearch = (event) => {
+  //   event.preventDefault();
+  //   dispatch({ type: "ACTUALLY_SEARCH_API", payload: searchItem });
+  // };
 
-  const addToDatabase = (id) => {
-    const newSnack = {
-      url: snack.imageType,
-      title: snack.title,
-      id: snack.id,
-    };
-    dispatch({ type: "ADD_TO_DATABASE", payload: action.newSnack });
-  };
-
-  useEffect(() => {
-    console.log("get list of snacks to appear upon load", snackList);
-    // dispatch an action to request the search items from api
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="container">
@@ -62,57 +47,26 @@ function AllSnacks() {
       <HomeButton className="btn" />
       <p>This is where everything will be placed</p>
 
-      <form onSubmit={newSearch}>
-        <input
-          type="text"
-          value={searchItem}
-          onChange={(event) => setSearchItem(event.target.value)}
-        />
-        <button className="searchButton" type="Submit">
-          Search
-        </button>
-        <button onClick={returnToList}>Go to Profile</button>
-      </form>
-
-      {snackList.map((snack) => {
-        console.log(snack);
-        return (
-          <div className="searchContainer">
-            <p>
-              <img
-                src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
-              ></img>
-            </p>
-            <p>{snack.title}</p>
-            <button
-              onClick={() => addFavorite(searchItem.url, searchItem.title)}
-            >
-              Favorite
-            </button>
-            <button onClick={addToDatabase}>Go to Profile</button>
-          </div>
-        );
-      })}
-
-      {AllSnacks.map((snack) => {
-        console.log(snack);
-        return (
-          <div className="searchContainer">
-            <p>
-              <img
-                src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
-              ></img>
-            </p>
-            <p>{snack.title}</p>
-            <button
-              onClick={() => addFavorite(searchItem.url, searchItem.title)}
-            >
-              Favorite
-            </button>
-            <button onClick={addToDatabase}>Go to Profile</button>
-          </div>
-        );
-      })}
+      {AllSnacks &&
+        AllSnacks.map((snack) => {
+          console.log(snack);
+          return (
+            <div className="searchContainer">
+              <p>
+                <img
+                  src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
+                ></img>
+              </p>
+              <p>{snack.title}</p>
+              <button
+                onClick={() => addFavorite(searchItem.url, searchItem.title)}
+              >
+                Favorite
+              </button>
+              <button onClick={goToProfile}>Go to Profile</button>
+            </div>
+          );
+        })}
     </div>
   );
 }

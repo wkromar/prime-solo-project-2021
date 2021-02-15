@@ -10,62 +10,72 @@ import { useState, useEffect } from "react";
 
 function AdminPage() {
   const history = useHistory();
-  const snackReducer = useSelector((store) => store.snackReducer);
+  const dispatch = useDispatch();
+  const snackList = useSelector((store) => store.searchReducer);
+  // const AllSnacks = useSelector((store) => store.allSnackReducer);
+  let [searchItem, setSearchItem] = useState("");
+
+  const newSearch = (event) => {
+    event.preventDefault();
+    dispatch({ type: "ACTUALLY_SEARCH_API", payload: searchItem });
+  };
+
+  const returnToList = () => {
+    console.log("returning to List");
+    history.push("/profile");
+  };
+  const toAllSnacks = () => {
+    console.log("to AllSnacks");
+    history.push("/AllSnacks");
+  };
+
+  const addToDatabase = (url, title, id) => {
+    console.log("adding to database", url, title, id);
+    const newSnack = {
+      url: `https://spoonacular.com/productImages/${id}-312x231.jpg`,
+      title: title,
+      id: id,
+    };
+    dispatch({ type: "SEND_COPIED_SNACKS_TO_REDUCER", payload: newSnack });
+  };
 
   return (
     <div className="container">
-      <h1>Admin Name</h1>
-      <p>Here the Admin will be able to edit and add new snacks</p>
+      <p>A refreshable list of all snacks will be available here</p>
       <LogOutButton className="btn" />
       <HomeButton className="btn" />
-      <p>This is where everything will be placed</p>
-      {snackReducer.map((searchSnack) => {
+      <button onClick={toAllSnacks}>To AllSnacks</button>
+      <form onSubmit={newSearch}>
+        <input
+          type="text"
+          value={searchItem}
+          onChange={(event) => setSearchItem(event.target.value)}
+        />
+        <button className="searchButton" type="Submit">
+          Search
+        </button>
+        <button onClick={returnToList}>Go to Profile</button>
+      </form>
+
+      {snackList?.map((snack) => {
+        console.log(snack);
         return (
           <div className="searchContainer">
-            {/* <p><img src = {searchSnack.url} width="400" height="300"></img></p> */}
-            <p>{searchSnack.title}</p>
-            <p>{searchSnack.likes}</p>
+            <p>
+              <img
+                src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
+              ></img>
+            </p>
+            <p>{snack.title}</p>
+
             <button
-              onClick={() =>
-                addFavorite(
-                  searchSnack.url,
-                  searchSnack.title,
-                  searchSnack.likes
-                )
-              }
+              onClick={() => addToDatabase(snack.id, snack.title, snack.id)}
             >
-              Favorite
+              Add to Local Database
             </button>
           </div>
         );
       })}
-
-      <button
-        className="btn"
-        onClick={() => {
-          history.push("/AllSnacks");
-        }}
-      >
-        All Snacks
-      </button>
-      <p> My Profile</p>
-      <button
-        className="btn"
-        onClick={() => {
-          history.push("/profile");
-        }}
-      >
-        Profile
-      </button>
-
-      <button
-        className="btn"
-        onClick={() => {
-          history.push("/editSnack");
-        }}
-      >
-        Profile
-      </button>
     </div>
   );
 }

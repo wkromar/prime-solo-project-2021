@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 function* StealSnacksForSelf(action) {
   try {
     console.log("adding snack chosen to database");
-    yield axios.post("/api/search", action.payload);
+    yield axios.post("/api/mySnacks", action.payload);
     yield put({ type: "GET_DATABASE_SNACKS" });
   } catch (error) {
     console.log(error);
@@ -15,8 +15,11 @@ function* StealSnacksForSelf(action) {
 function* SendDatabaseSnacks() {
   try {
     console.log("getting snacks from my database");
-    const response = yield axios.get("/api/search");
-    yield put({ type: "SEND_COPIED_SNACKS_TO_REDUCER" });
+    const response = yield axios.get("/api/mySnacks");
+    yield put({
+      type: "SEND_COPIED_SNACKS_TO_REDUCER",
+      payload: response.data,
+    });
   } catch (error) {
     console.log(error);
   }
