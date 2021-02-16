@@ -6,6 +6,7 @@ const router = express.Router();
 //take snack chosen from api and give to my database
 router.post("/", (req, res) => {
   const snackrSnacks = req.body;
+  console.log("in mySnacks router", snackrSnacks);
   const queryText = `INSERT INTO "snack_list" ("snack_image", "snack_name", "snack_id")
     VALUES($1, $2, $3) `;
 

@@ -6,6 +6,9 @@ import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+//shows all the snacks I have taken from the API and placed them into my database.
+//then brings them into my own reducer and displays them on the DOM.
+
 function AllSnacks() {
   //hooks
   const history = useHistory();
@@ -38,7 +41,9 @@ function AllSnacks() {
   //   dispatch({ type: "ACTUALLY_SEARCH_API", payload: searchItem });
   // };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch({ type: "GET_DATABASE_SNACKS" });
+  }, []);
 
   return (
     <div className="container">
@@ -47,26 +52,24 @@ function AllSnacks() {
       <HomeButton className="btn" />
       <p>This is where everything will be placed</p>
 
-      {AllSnacks &&
-        AllSnacks.map((snack) => {
-          console.log(snack);
-          return (
-            <div className="searchContainer">
-              <p>
-                <img
-                  src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
-                ></img>
-              </p>
-              <p>{snack.title}</p>
-              <button
-                onClick={() => addFavorite(searchItem.url, searchItem.title)}
-              >
-                Favorite
-              </button>
-              <button onClick={goToProfile}>Go to Profile</button>
-            </div>
-          );
-        })}
+      {AllSnacks.map((snack) => {
+        return (
+          <div className="searchContainer">
+            <p>
+              <img
+                src={`https://spoonacular.com/productImages/${snack.snack_id}-312x231.jpg`}
+              ></img>
+            </p>
+            <p>{snack.snack_name}</p>
+            <button
+              onClick={() => addFavorite(searchItem.url, searchItem.title)}
+            >
+              Favorite
+            </button>
+            <button onClick={goToProfile}>Go to Profile</button>
+          </div>
+        );
+      })}
     </div>
   );
 }
