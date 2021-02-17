@@ -22,6 +22,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import AllSnacks from "../AllSnacks/AllSnacks";
 import AdminPage from "../AdminPage/AdminPage";
 import EditSnack from "../EditSnackPage/EditSnackPage";
+import FavotiresPage from "../FavoritesPage/FavoritesPage";
 
 import "./App.css";
 
@@ -136,6 +137,16 @@ function App() {
             path="/editSnack/:id"
           >
             <EditSnack />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows FavoritesPage else shows LoginPage
+            exact
+            path="/home"
+            exact
+            authRedirect="/favorites"
+          >
+            <FavoritesPage />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

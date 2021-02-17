@@ -22,10 +22,9 @@ function AllSnacks() {
   const [isVisible, setIsVisible] = useState(true);
   let [searchItem, setSearchItem] = useState("");
 
-  const addFavorite = (url, title, id) => {
-    console.log(url, title);
+  const addFavorite = (title, id) => {
+    console.log("adding favorite", title, id);
     const newFavorite = {
-      url: url,
       title: title,
       id: id,
     };
@@ -62,7 +61,7 @@ function AllSnacks() {
             </p>
             <p>{snack.snack_name}</p>
             <button
-              onClick={() => addFavorite(searchItem.url, searchItem.title)}
+              onClick={() => addFavorite(snack.snack_name, snack.snack_id)}
             >
               Favorite
             </button>

@@ -39,10 +39,9 @@ function AdminPage() {
   };
 
   //adds an item to the database
-  const addToDatabase = (url, title, id) => {
-    console.log("adding to database", url, title, id);
+  const addToDatabase = (title, id) => {
+    console.log("adding to database", title, id);
     const newSnack = {
-      url: `https://spoonacular.com/productImages/${id}-312x231.jpg`,
       title: title,
       id: id,
     };
@@ -68,23 +67,6 @@ function AdminPage() {
     history.push(`/editSnack/${id}`);
   };
 
-  //testing out an editing function
-  const editRenderer = (data, snackName) => {
-    if (this.state.id && this.state.id === data.id) {
-      const saveButtonId = `save-${data.id}`;
-      const cancelButton = `cancel=${data.id}`;
-      return (
-        <div>
-          <button id={saveButtonId} onClick={() => console.log("save Clicked")}>
-            Save
-          </button>
-          <button id={saveButtonId} onClick={() => console.log("save Clicked")}>
-            Cancel
-          </button>
-        </div>
-      );
-    }
-  };
   {
     /* <LogOutButton className="btn" />
       <HomeButton className="btn" /> */
@@ -106,66 +88,54 @@ function AdminPage() {
         </button>
         <button onClick={returnToList}>Go to Profile</button>
       </form>
-      {isEditing ? (
-        <>
-          {snackList?.map((snack) => {
-            console.log(snack);
-            return (
-              <div className="searchContainer">
-                <p>
-                  <img
-                    src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
-                  ></img>
-                </p>
-                <p>{snack.title}</p>
 
-                <button onClick={() => addToDatabase(snack.title, snack.id)}>
-                  Add to Local Database
-                </button>
-              </div>
-            );
-          })}
-        </>
-      ) : (
-        <>
-          <p>
-            ------------------------------------------------------------------
-          </p>
-          <h2>Here is the list of all snacks stored in the database</h2>
-          {AllSnacks?.map((editSnack) => {
-            console.log(editSnack);
-            return (
-              <div className="searchContainer">
-                <p>
-                  <img
-                    src={`https://spoonacular.com/productImages/${editSnack.snack_id}-312x231.jpg`}
-                  ></img>
-                </p>
-                <p>{editSnack.snack_name}</p>
+      {snackList?.map((snack) => {
+        console.log(snack);
+        return (
+          <div className="searchContainer">
+            <p>
+              <img
+                src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
+              ></img>
+            </p>
+            <p>{snack.title}</p>
 
-                <button
-                  onClick={() =>
-                    editItem(
-                      editSnack.id,
-                      editSnack.snack_id,
-                      editSnack.snack_name
-                    )
-                  }
-                >
-                  Edit (Admin Only)
-                </button>
-                <button onClick={() => deleteItem(editSnack.id)}>
-                  Delete(Admin Only)
-                </button>
-              </div>
-            );
-          })}
-        </>
-      )}
+            <button onClick={() => addToDatabase(snack.title, snack.id)}>
+              Add to Local Database
+            </button>
+          </div>
+        );
+      })}
+
+      <p>------------------------------------------------------------------</p>
+      <h2>Here is the list of all snacks stored in the database</h2>
+      {AllSnacks?.map((editSnack) => {
+        console.log(editSnack);
+        return (
+          <div className="searchContainer">
+            <p>
+              <img
+                src={`https://spoonacular.com/productImages/${editSnack.snack_id}-312x231.jpg`}
+              ></img>
+            </p>
+            <p>{editSnack.snack_name}</p>
+
+            <button
+              onClick={() =>
+                editItem(editSnack.id, editSnack.snack_id, editSnack.snack_name)
+              }
+            >
+              Edit (Admin Only)
+            </button>
+            <button onClick={() => deleteItem(editSnack.id)}>
+              Delete(Admin Only)
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
-
 export default AdminPage;
 
 {

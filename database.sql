@@ -50,3 +50,10 @@ VALUES ('Cheetos', '100% health', 'Image goes here', '1', '2');
 
 INSERT INTO "snack_categories" ("name")
 VALUES ('salty'), ('cheesey');
+
+CREATE TABLE "favorites" (
+"id" SERIAL PRIMARY KEY,
+"snack_name" VARCHAR(100) NOT NULL,
+"snack_id" INT,
+"category_id" VARCHAR(100),
+"user_id" INT);

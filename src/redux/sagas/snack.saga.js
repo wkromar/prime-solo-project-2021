@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 //sending API snacks to my own database
 function* StealSnacksForSelf(action) {
   try {
-    console.log("adding snack chosen to database");
+    console.log("adding snack chosen to database", action.payload);
     yield axios.post("/api/mySnacks", action.payload);
     yield put({ type: "GET_DATABASE_SNACKS" });
   } catch (error) {

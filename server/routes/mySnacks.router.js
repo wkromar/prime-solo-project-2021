@@ -7,11 +7,11 @@ const router = express.Router();
 router.post("/", (req, res) => {
   const snackrSnacks = req.body;
   console.log("in mySnacks router", snackrSnacks);
-  const queryText = `INSERT INTO "snack_list" ("snack_image", "snack_name", "snack_id")
-    VALUES($1, $2, $3) `;
+  const queryText = `INSERT INTO "snack_list" ("snack_name","snack_id")
+    VALUES($1, $2)`;
 
   pool
-    .query(queryText, [snackrSnacks.url, snackrSnacks.title, snackrSnacks.id])
+    .query(queryText, [snackrSnacks.title, snackrSnacks.id])
     .then((response) => {
       console.log(response);
       res.sendStatus(200);
