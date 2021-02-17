@@ -130,6 +130,14 @@ function App() {
             <EditSnack />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/editSnack/:id"
+          >
+            <EditSnack />
+          </ProtectedRoute>
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>

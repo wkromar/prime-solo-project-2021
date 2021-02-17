@@ -4,6 +4,7 @@ import user from "./user.reducer";
 import favoriteReducer from "./favorite.reducer";
 import searchReducer from "./search.reducer";
 import AllSnackReducer from "./allSnack.reducer";
+import EditReducer from "./edit.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   favoriteReducer, //will store the items favorited by the user.
   searchReducer, //will store all the snacks grabbed from API.
   AllSnackReducer,
+  EditReducer,
 });
 
 export default rootReducer;
