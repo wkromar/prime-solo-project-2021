@@ -57,14 +57,15 @@ function AdminPage() {
   };
 
   //editing a feature
-  const editItem = (snack_id, snack_name) => {
+  const editItem = (id, snack_id, snack_name) => {
     const itemToEdit = {
+      id: id,
       snack_name: snack_name,
       snack_id: snack_id,
     };
     dispatch({ type: "ITEM_TO_EDIT", payload: itemToEdit });
-    dispatch({ type: "SET_EDITING_SNACK", payload: snack_id });
-    history.push(`/editSnack/${snack_id}`);
+    // dispatch({ type: "SET_EDITING_SNACK", payload: id });
+    history.push(`/editSnack/${id}`);
   };
 
   //testing out an editing function
@@ -118,9 +119,7 @@ function AdminPage() {
                 </p>
                 <p>{snack.title}</p>
 
-                <button
-                  onClick={() => addToDatabase(snack.id, snack.title, snack.id)}
-                >
+                <button onClick={() => addToDatabase(snack.title, snack.id)}>
                   Add to Local Database
                 </button>
               </div>
@@ -146,7 +145,11 @@ function AdminPage() {
 
                 <button
                   onClick={() =>
-                    editItem(editSnack.snack_id, editSnack.snack_name)
+                    editItem(
+                      editSnack.id,
+                      editSnack.snack_id,
+                      editSnack.snack_name
+                    )
                   }
                 >
                   Edit (Admin Only)

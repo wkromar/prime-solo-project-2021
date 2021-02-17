@@ -14,9 +14,10 @@ function EditSnack() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({ type: "SET_EDITING_SNACK", payload: id });
-  }, [id]);
+  // useEffect(() => {
+  //   console.log(id);
+  //   dispatch({ type: "SET_EDITING_SNACK", payload: id });
+  // }, [id]);
 
   const saveChanges = () => {
     // trigger a saga that will save our local changes in the DB
@@ -24,6 +25,8 @@ function EditSnack() {
       type: "SAVE_EDIT_SNACK",
       payload: snackToEdit,
     });
+    dispatch({ type: "GET_DATABASE_SNACKS" });
+    history.push("/admin");
   };
 
   return (
@@ -42,11 +45,12 @@ function EditSnack() {
           dispatch({ type: "EDIT_SNACK_IMAGE", payload: event.target.value });
         }}
       ></input>
-      <button onClick={saveChanges}></button>
+      <button onClick={saveChanges}>Save Changes</button>
     </>
   );
 }
-
+//I am not passing the router an ID for the item.
+//i need to pass the editrouter an ID so I can run my sql query.
 export default EditSnack;
 //for favorite work
 
