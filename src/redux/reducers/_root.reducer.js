@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import errors from "./errors.reducer";
 import user from "./user.reducer";
-import favoriteReducer from "./favorite.reducer";
-import searchReducer from "./search.reducer";
+import FavoritesReducer from "./favorite.reducer";
+import SearchReducer from "./search.reducer";
 import AllSnackReducer from "./allSnack.reducer";
 import EditReducer from "./edit.reducer";
 
@@ -15,10 +15,10 @@ import EditReducer from "./edit.reducer";
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  favoriteReducer, //will store the items favorited by the user.
-  searchReducer, //will store all the snacks grabbed from API.
-  AllSnackReducer,
-  EditReducer,
+  FavoritesReducer, //will store the items favorited by the user.
+  SearchReducer, //will store all the snacks grabbed from API.
+  AllSnackReducer, //stores all the snacks available to the users
+  EditReducer, //admin function: able to edit a single item stored here
 });
 
 export default rootReducer;

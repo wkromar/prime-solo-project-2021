@@ -11,7 +11,7 @@ function FavoritesPageButton() {
         history.push("/favorites");
       }}
     >
-      Home
+      Favorites
     </button>
   );
 }

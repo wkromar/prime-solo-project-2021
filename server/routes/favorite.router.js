@@ -42,9 +42,22 @@ router.post("/", (req, res) => {
 });
 
 // delete a favorite
-router.delete("/", (req, res) => {
-  res.sendStatus(200);
-  console.log("Item successfully deleted");
+router.delete("/:id", (req, res) => {
+  const favoriteToDelete = req.params.id;
+  console.log(req.params.id);
+  const queryText = `DELETE FROM favorites WHERE id = $1;`;
+  pool
+    .query(queryText, [favoriteToDelete])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(
+        `Error making FAVORITE DELETE database query ${queryText}`,
+        error
+      );
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

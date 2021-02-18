@@ -2,6 +2,7 @@ import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import HomeButton from "../HomeButton/HomeButton";
+import FavoritesButton from "../FavoritesPageButton/FavoritesPageButton";
 
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -34,6 +35,7 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
       <HomeButton className="btn" />
+      <FavoritesButton className="btn" />
       {snackReducer?.map((searchSnack) => {
         return (
           <div className="searchContainer">

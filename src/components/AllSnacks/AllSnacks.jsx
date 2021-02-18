@@ -49,9 +49,8 @@ function AllSnacks() {
       <p>A refreshable list of all snacks will be available here</p>
       <LogOutButton className="btn" />
       <HomeButton className="btn" />
-      <p>This is where everything will be placed</p>
 
-      {AllSnacks.map((snack) => {
+      {AllSnacks?.map((snack) => {
         return (
           <div className="searchContainer">
             <p>

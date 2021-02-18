@@ -22,7 +22,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import AllSnacks from "../AllSnacks/AllSnacks";
 import AdminPage from "../AdminPage/AdminPage";
 import EditSnack from "../EditSnackPage/EditSnackPage";
-import FavotiresPage from "../FavoritesPage/FavoritesPage";
+import FavoritesPage from "../FavoritesPage/FavoritesPage";
 
 import "./App.css";
 
@@ -108,7 +108,7 @@ function App() {
 
           {/* HERE ARE THE ROUTES I MAKE ---------------------------------------*/}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+            // logged in shows All Snacks Page else shows LoginPage
             exact
             path="/AllSnacks"
           >
@@ -123,13 +123,13 @@ function App() {
             <AdminPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path="/editSnack"
           >
             <EditSnack />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
@@ -142,9 +142,7 @@ function App() {
           <ProtectedRoute
             // logged in shows FavoritesPage else shows LoginPage
             exact
-            path="/home"
-            exact
-            authRedirect="/favorites"
+            path="/favorites"
           >
             <FavoritesPage />
           </ProtectedRoute>

@@ -13,7 +13,7 @@ router.delete("/:id", (req, res) => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log(`Error making database query ${queryText}`, error);
+      console.log(`Error making DELETE database query ${queryText}`, error);
       res.sendStatus(500);
     });
 });

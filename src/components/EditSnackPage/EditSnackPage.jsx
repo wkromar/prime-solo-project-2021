@@ -5,7 +5,6 @@ import HomeButton from "../HomeButton/HomeButton";
 import { useParams } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 function EditSnack() {
   const history = useHistory();
@@ -14,10 +13,10 @@ function EditSnack() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   console.log(id);
-  //   dispatch({ type: "SET_EDITING_SNACK", payload: id });
-  // }, [id]);
+  useEffect(() => {
+    console.log(id);
+    dispatch({ type: "SET_EDITING_SNACK", payload: id });
+  }, [id]);
 
   const saveChanges = () => {
     // trigger a saga that will save our local changes in the DB
