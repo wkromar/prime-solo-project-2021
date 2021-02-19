@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 function AdminPage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const snackList = useSelector((store) => store.searchReducer);
+  const snackList = useSelector((store) => store.SearchReducer);
   const AllSnacks = useSelector((store) => store.AllSnackReducer);
   const [isEditing, setIsEditing] = useState(false);
   let [searchItem, setSearchItem] = useState("");
@@ -19,7 +19,6 @@ function AdminPage() {
   //gets all snacks in database on load
   useEffect(() => {
     dispatch({ type: "GET_DATABASE_SNACKS" });
-    console.log(AllSnacks);
   }, []);
 
   //searches API for requested Item
@@ -56,11 +55,12 @@ function AdminPage() {
   };
 
   //editing a feature
-  const editItem = (id, snack_id, snack_name) => {
+  const editItem = (id, snack_id, snack_name, favorites) => {
     const itemToEdit = {
       id: id,
       snack_name: snack_name,
       snack_id: snack_id,
+      favorites: favorites,
     };
     dispatch({ type: "ITEM_TO_EDIT", payload: itemToEdit });
     // dispatch({ type: "SET_EDITING_SNACK", payload: id });
@@ -75,7 +75,6 @@ function AdminPage() {
   return (
     <div className="container">
       <p>Add snacks from the Spoonacular API</p>
-
       <button onClick={toAllSnacks}>To AllSnacks</button>
       <form onSubmit={newSearch}>
         <input
@@ -110,7 +109,6 @@ function AdminPage() {
       <p>------------------------------------------------------------------</p>
       <h2>Here is the list of all snacks stored in the database</h2>
       {AllSnacks?.map((editSnack) => {
-        console.log(editSnack);
         return (
           <div className="searchContainer">
             <p>
@@ -119,10 +117,16 @@ function AdminPage() {
               ></img>
             </p>
             <p>{editSnack.snack_name}</p>
+            <p>Favorites: {editSnack.favorites}</p>
 
             <button
               onClick={() =>
-                editItem(editSnack.id, editSnack.snack_id, editSnack.snack_name)
+                editItem(
+                  editSnack.id,
+                  editSnack.snack_id,
+                  editSnack.snack_name,
+                  editSnack.favorites
+                )
               }
             >
               Edit (Admin Only)

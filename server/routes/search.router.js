@@ -1,11 +1,13 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const axios = require("axios");
-
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 const router = express.Router();
 
 //return all search items
-router.get("/:searchterm", (req, res) => {
+router.get("/:searchterm", rejectUnauthenticated, (req, res) => {
   const snackList = [];
   console.log(req.params.searchterm);
   var search = JSON.stringify(req.params.searchterm);
@@ -30,7 +32,7 @@ router.get("/:searchterm", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   console.log("adding snacks to snack_list database");
   const newSnack = req.body;
   const queryText = `INSERT INTO "snack_list" ("snack_image", "snack_title", "snack_id",)

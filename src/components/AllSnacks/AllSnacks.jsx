@@ -13,22 +13,30 @@ function AllSnacks() {
   //hooks
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log("in All Snacks");
 
   //reducers
   const AllSnacks = useSelector((store) => store.AllSnackReducer);
+  const user = useSelector((store) => store.user);
 
   //variables and constants
   const [isVisible, setIsVisible] = useState(true);
   let [searchItem, setSearchItem] = useState("");
 
-  const addFavorite = (title, id) => {
-    console.log("adding favorite", title, id);
+  const FavoriteCounter = (favorites) => {
+    favorites + 1;
+    console.log("plus 1 to favorites", favorites);
+  };
+
+  const addFavorite = (title, id, user, favorites) => {
+    console.log("adding favorite", title, id, user);
     const newFavorite = {
       title: title,
       id: id,
+      user_id: user,
+      favorites: favorites,
     };
     console.log(newFavorite);
+    FavoriteCounter(favorites);
     dispatch({ type: "POST_FAVORITE", payload: newFavorite });
   };
 
@@ -58,9 +66,18 @@ function AllSnacks() {
                 src={`https://spoonacular.com/productImages/${snack.snack_id}-312x231.jpg`}
               ></img>
             </p>
-            <p>{snack.snack_name}</p>
+            <p>
+              {snack.snack_name} Favorites: {snack.favorites}
+            </p>
             <button
-              onClick={() => addFavorite(snack.snack_name, snack.snack_id)}
+              onClick={() =>
+                addFavorite(
+                  snack.snack_name,
+                  snack.snack_id,
+                  user.id,
+                  snack.favorites
+                )
+              }
             >
               Favorite
             </button>

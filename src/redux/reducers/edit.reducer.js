@@ -6,6 +6,8 @@ const EditReducer = (state = {}, action) => {
     return { ...state, snack_name: action.payload };
   } else if (action.type === "EDIT_SNACK_IMAGE") {
     return { ...state, snack_image: action.payload };
+  } else if (action.type === "EDIT_SNACK_FAVORITES") {
+    return { ...state, favorites: action.payload };
   }
   return state;
 };

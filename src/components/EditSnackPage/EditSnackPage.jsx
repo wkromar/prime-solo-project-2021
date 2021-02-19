@@ -3,6 +3,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import HomeButton from "../HomeButton/HomeButton";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -42,6 +43,15 @@ function EditSnack() {
         value={snackToEdit.snack_image}
         onChange={(event) => {
           dispatch({ type: "EDIT_SNACK_IMAGE", payload: event.target.value });
+        }}
+      ></input>
+      <input
+        value={snackToEdit.favorites}
+        onChange={(event) => {
+          dispatch({
+            type: "EDIT_SNACK_FAVORITES",
+            payload: event.target.value,
+          });
         }}
       ></input>
       <button onClick={saveChanges}>Save Changes</button>
