@@ -28,7 +28,7 @@ function AllSnacks() {
   };
 
   const addFavorite = (title, id, user, favorites) => {
-    console.log("adding favorite", title, id, user);
+    console.log("adding favorite", title, id, user, favorites);
     const newFavorite = {
       title: title,
       id: id,

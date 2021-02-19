@@ -13,7 +13,6 @@ function favoritesPage() {
 
   //reducers
   const Favorites = useSelector((store) => store.FavoritesReducer);
-  console.log(Favorites);
 
   useEffect(() => {
     dispatch({ type: "GET_FAVORITE" });

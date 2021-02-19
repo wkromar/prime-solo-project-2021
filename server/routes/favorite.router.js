@@ -7,7 +7,7 @@ const router = express.Router();
 
 // return all favorite snacks
 router.get("/", rejectUnauthenticated, (req, res) => {
-  const queryText = `SELECT * FROM "favorites" ORDER BY "id";`;
+  const queryText = `SELECT * FROM "favorites" WHERE "user_id" = 1 ORDER BY "id";`;
   pool
     .query(queryText)
     .then((result) => {
@@ -24,7 +24,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 //initial dump of items from the API into my snackList so the
 router.post("/", rejectUnauthenticated, (req, res) => {
   console.log(
-    `In favorite POST: title: ${req.body.title}  snack ID: ${req.body.id}`
+    `In favorite POST: title: ${req.body.title}  snack ID: ${req.body.id}, user: ${req.body.user_id}`
   );
   const newFavorite = req.body;
   const queryText = `
@@ -32,7 +32,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     VALUES ($1, $2, $3)`;
 
   pool
-    .query(queryText, [newFavorite.title, newFavorite.id, user.id])
+    .query(queryText, [newFavorite.title, newFavorite.id, newFavorite.user_id])
     .then((response) => {
       console.log("response from favorite post", response);
       res.sendStatus(200);
