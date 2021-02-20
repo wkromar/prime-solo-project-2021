@@ -24,7 +24,7 @@ import AdminPage from "../AdminPage/AdminPage";
 import EditSnack from "../EditSnackPage/EditSnackPage";
 import FavoritesPage from "../FavoritesPage/FavoritesPage";
 
-import "./App.css";
+import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();

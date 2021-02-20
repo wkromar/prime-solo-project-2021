@@ -13,7 +13,7 @@ router.get("/:searchterm", rejectUnauthenticated, (req, res) => {
   var search = JSON.stringify(req.params.searchterm);
   axios
     .get(
-      `https://api.spoonacular.com/food/products/search?apiKey=${process.env.SPOONTACULAR_API_KEY}&query=${search}&number=2`
+      `https://api.spoonacular.com/food/products/search?apiKey=${process.env.SPOONTACULAR_API_KEY}&query=${search}&number=20`
     )
     .then((response) => {
       response.data.products.forEach((snack) => {

@@ -57,3 +57,7 @@ CREATE TABLE "favorites" (
 "snack_id" INT,
 "category_id" VARCHAR(100),
 "user_id" INT);
+
+
+-- grabbing favorites for only the user who is asking
+SELECT * FROM "favorites" WHERE "user_id" = 1 ORDER BY "id";

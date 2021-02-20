@@ -6,6 +6,9 @@ import HomeButton from "../HomeButton/HomeButton";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+//import scss
+import "../App/App.scss";
+
 //create an add Snack Field, use styling from
 
 function AdminPage() {
@@ -94,6 +97,7 @@ function AdminPage() {
           <div className="searchContainer">
             <p>
               <img
+                className="images"
                 src={`https://spoonacular.com/productImages/${snack.id}-312x231.jpg`}
               ></img>
             </p>
@@ -108,35 +112,41 @@ function AdminPage() {
 
       <p>------------------------------------------------------------------</p>
       <h2>Here is the list of all snacks stored in the database</h2>
-      {AllSnacks?.map((editSnack) => {
-        return (
-          <div className="searchContainer">
-            <p>
-              <img
-                src={`https://spoonacular.com/productImages/${editSnack.snack_id}-312x231.jpg`}
-              ></img>
-            </p>
-            <p>{editSnack.snack_name}</p>
-            <p>Favorites: {editSnack.favorites}</p>
+      <div className="showSnacks">
+        {AllSnacks?.map((editSnack) => {
+          return (
+            <div className="searchContainer">
+              <p>
+                <img
+                  className="images"
+                  src={`https://spoonacular.com/productImages/${editSnack.snack_id}-312x231.jpg`}
+                ></img>
+              </p>
+              <p>{editSnack.snack_name}</p>
 
-            <button
-              onClick={() =>
-                editItem(
-                  editSnack.id,
-                  editSnack.snack_id,
-                  editSnack.snack_name,
-                  editSnack.favorites
-                )
-              }
-            >
-              Edit (Admin Only)
-            </button>
-            <button onClick={() => deleteItem(editSnack.id)}>
-              Delete(Admin Only)
-            </button>
-          </div>
-        );
-      })}
+              <button
+                className="btn btn_sizeSm"
+                onClick={() =>
+                  editItem(
+                    editSnack.id,
+                    editSnack.snack_id,
+                    editSnack.snack_name,
+                    editSnack.favorites
+                  )
+                }
+              >
+                Edit (Admin Only)
+              </button>
+              <button
+                className="btn btn_sizeSm"
+                onClick={() => deleteItem(editSnack.id)}
+              >
+                Delete(Admin Only)
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

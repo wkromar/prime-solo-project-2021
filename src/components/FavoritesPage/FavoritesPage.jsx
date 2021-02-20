@@ -46,8 +46,9 @@ function favoritesPage() {
               ></img>
             </p>
             <p>{snack.snack_name}</p>
+            <p>Favorites: {snack.favorites}</p>
             <button onClick={() => deleteItem(snack.id)}>
-              Delete(Admin Only)
+              Remove From Favorites
             </button>
           </div>
         );

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import './LandingPage.css';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import "./LandingPage.scss";
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+import RegisterForm from "../RegisterForm/RegisterForm";
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const [heading, setHeading] = useState("Welcome");
   const history = useHistory();
 
   const onLogin = (event) => {
-    history.push('/login');
+    history.push("/login");
   };
 
   return (
@@ -56,9 +56,11 @@ function LandingPage() {
 
           <center>
             <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
-              Login
-            </button>
+            <div className="btn-wrapper">
+              <button className="loginBtn btn_sizeSm" onClick={onLogin}>
+                Login
+              </button>
+            </div>
           </center>
         </div>
       </div>

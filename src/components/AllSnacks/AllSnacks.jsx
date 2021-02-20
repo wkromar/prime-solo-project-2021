@@ -23,11 +23,12 @@ function AllSnacks() {
   let [searchItem, setSearchItem] = useState("");
 
   const FavoriteCounter = (favorites) => {
-    favorites + 1;
+    favorites += 1;
     console.log("plus 1 to favorites", favorites);
   };
 
   const addFavorite = (title, id, user, favorites) => {
+    FavoriteCounter(favorites);
     console.log("adding favorite", title, id, user, favorites);
     const newFavorite = {
       title: title,
@@ -36,17 +37,13 @@ function AllSnacks() {
       favorites: favorites,
     };
     console.log(newFavorite);
-    FavoriteCounter(favorites);
+
     dispatch({ type: "POST_FAVORITE", payload: newFavorite });
   };
 
   const goToProfile = () => {
     history.push("/profile");
   };
-  // const newSearch = (event) => {
-  //   event.preventDefault();
-  //   dispatch({ type: "ACTUALLY_SEARCH_API", payload: searchItem });
-  // };
 
   useEffect(() => {
     dispatch({ type: "GET_DATABASE_SNACKS" });
@@ -54,7 +51,7 @@ function AllSnacks() {
 
   return (
     <div className="container">
-      <p>A refreshable list of all snacks will be available here</p>
+      <h2>What Piques Your Interest?</h2>
       <LogOutButton className="btn" />
       <HomeButton className="btn" />
 
@@ -63,12 +60,11 @@ function AllSnacks() {
           <div className="searchContainer">
             <p>
               <img
+                className="images"
                 src={`https://spoonacular.com/productImages/${snack.snack_id}-312x231.jpg`}
               ></img>
             </p>
-            <p>
-              {snack.snack_name} Favorites: {snack.favorites}
-            </p>
+            <p>{snack.snack_name}</p>
             <button
               onClick={() =>
                 addFavorite(

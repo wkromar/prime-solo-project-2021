@@ -33,9 +33,25 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
-      <HomeButton className="btn" />
-      <FavoritesButton className="btn" />
+      <div className="honeycomb">
+        <FavoritesButton className="btn" />
+        <button
+          className="btn"
+          onClick={() => {
+            history.push("/AllSnacks");
+          }}
+        >
+          All Snacks
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            history.push("/admin");
+          }}
+        >
+          Admin
+        </button>
+      </div>
       {snackReducer?.map((searchSnack) => {
         return (
           <div className="searchContainer">
@@ -67,31 +83,6 @@ function UserPage() {
         See the list of all available snacks, order by category, and see the
         nutritional value
       </p>
-      <button
-        className="btn"
-        onClick={() => {
-          history.push("/AllSnacks");
-        }}
-      >
-        All Snacks
-      </button>
-      <p> My Profile</p>
-      <button
-        className="btn"
-        onClick={() => {
-          history.push("/profile");
-        }}
-      >
-        Profile
-      </button>
-      <button
-        className="btn"
-        onClick={() => {
-          history.push("/admin");
-        }}
-      >
-        Temporary Admin Button
-      </button>
     </div>
   );
 }
