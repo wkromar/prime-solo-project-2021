@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import HomeButton from "../HomeButton/HomeButton";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import FavoritesButton from "../FavoritesPageButton/FavoritesPageButton";
 import axios from "axios";
 
 //shows all the snacks I have taken from the API and placed them into my database.
@@ -41,8 +42,8 @@ function AllSnacks() {
     dispatch({ type: "POST_FAVORITE", payload: newFavorite });
   };
 
-  const goToProfile = () => {
-    history.push("/profile");
+  const goHome = () => {
+    history.push("/user");
   };
 
   useEffect(() => {
@@ -51,9 +52,13 @@ function AllSnacks() {
 
   return (
     <div className="container">
-      <h2>What Piques Your Interest?</h2>
-      <LogOutButton className="btn" />
-      <HomeButton className="btn" />
+      <div className="userInfo">
+        <h2>What Piques Your Interest?</h2>
+      </div>
+      <div className="honeycomb">
+        <HomeButton className="loginBtn btn_sizeSm" />
+        <FavoritesButton className="btn btn_sizeSm" />
+      </div>
 
       {AllSnacks?.map((snack) => {
         return (
@@ -66,6 +71,7 @@ function AllSnacks() {
             </p>
             <p>{snack.snack_name}</p>
             <button
+              className="btn btn_sizeSm"
               onClick={() =>
                 addFavorite(
                   snack.snack_name,
@@ -77,7 +83,14 @@ function AllSnacks() {
             >
               Favorite
             </button>
-            <button onClick={goToProfile}>Go to Profile</button>
+            <button
+              className="btn btn_sizeSm"
+              onClick={() => {
+                history.push("/user");
+              }}
+            >
+              Home
+            </button>
           </div>
         );
       })}

@@ -25,17 +25,26 @@ function favoritesPage() {
     dispatch({ type: "GET_FAVORITE" });
   };
 
-  const goToProfile = () => {
-    history.push("/profile");
-  };
-
   return (
     <div className="container">
-      <p>A refreshable list of all snacks will be available here</p>
-      <LogOutButton className="btn" />
-      <HomeButton className="btn" />
-      <button onClick={goToProfile}>Go to Profile</button>
-      <p>This is where everything will be placed</p>
+      <div className="userInfo">
+        <h2>A refreshable list of all snacks will be available here</h2>
+      </div>
+      <div className="honeycomb">
+        <div className="honeycomb-cell">
+          <HomeButton />
+          <div className="btn-wrapper">
+            <button
+              className="loginBtn btn_sizeSm"
+              onClick={() => {
+                history.push("/AllSnacks");
+              }}
+            >
+              All Snacks
+            </button>
+          </div>
+        </div>
+      </div>
 
       {Favorites.map((snack) => {
         return (
@@ -47,7 +56,7 @@ function favoritesPage() {
             </p>
             <p>{snack.snack_name}</p>
             <p>Favorites: {snack.favorites}</p>
-            <button onClick={() => deleteItem(snack.id)}>
+            <button className="btn " onClick={() => deleteItem(snack.id)}>
               Remove From Favorites
             </button>
           </div>

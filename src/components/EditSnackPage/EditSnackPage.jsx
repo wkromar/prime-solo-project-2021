@@ -31,23 +31,24 @@ function EditSnack() {
 
   return (
     <>
-      <h3>Editing current snack</h3>
-      <h4>{id}</h4>
-      <p>Name</p>
-      <input
-        value={snackToEdit.snack_name}
-        onChange={(event) => {
-          dispatch({ type: "EDIT_SNACK_NAME", payload: event.target.value });
-        }}
-      ></input>
-      <p>Snack ID: used for image rendering</p>
-      <input
-        value={snackToEdit.snack_image}
-        onChange={(event) => {
-          dispatch({ type: "EDIT_SNACK_IMAGE", payload: event.target.value });
-        }}
-      ></input>
-      <p>Favorites: How many people have added this to their own list.</p>
+      <div className="searchContainer">
+        <h3>Editing current snack</h3>
+        <h4>{id}</h4>
+        <p>Name:</p>
+        <input
+          value={snackToEdit.snack_name}
+          onChange={(event) => {
+            dispatch({ type: "EDIT_SNACK_NAME", payload: event.target.value });
+          }}
+        ></input>
+        <p>Snack ID: used for image rendering</p>
+        <input
+          value={snackToEdit.snack_image}
+          onChange={(event) => {
+            dispatch({ type: "EDIT_SNACK_IMAGE", payload: event.target.value });
+          }}
+        ></input>
+        {/* <p>Favorites: How many people have added this to their own list.</p>
       <input
         value={snackToEdit.favorites}
         onChange={(event) => {
@@ -56,8 +57,11 @@ function EditSnack() {
             payload: event.target.value,
           });
         }}
-      ></input>
-      <button onClick={saveChanges}>Save Changes</button>
+      ></input> */}
+        <button className="btn" onClick={saveChanges}>
+          Save Changes
+        </button>
+      </div>
     </>
   );
 }

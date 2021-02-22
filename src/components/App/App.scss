@@ -11,6 +11,9 @@ body {
 
   height: 100vh;
   margin: 0;
+  background-image: url(../../images/honeycomb2.jpg);
+  background-size: 100% 120%;
+  background-attachment: fixed;
 
   background-color: #3e4041;
 }
@@ -30,8 +33,8 @@ Container
 }
 
 .searchContainer {
-  display: inline-block;
-  flex-direction: row;
+  display: inline-table;
+  flex-direction: column;
   transition: all 0.5s;
   cursor: pointer;
   background-color: rgb(168, 168, 168);
@@ -42,6 +45,7 @@ Container
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 8px;
+  align-content: center;
 }
 
 /* --------------------------------------------------------------------------------
@@ -50,7 +54,7 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #13ce9a;
   border-width: 1px 1px 3px;
   border-top-left-radius: 5;
   border-bottom-left-radius: 50px;
@@ -71,13 +75,12 @@ Button
   content: "login";
   width: 100px;
   height: 100px;
-
+  padding: 20px;
   cursor: pointer;
-
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-
+  margin-inline-end: 60px;
   transition: all 1s ease;
 
   .loginBtn {
@@ -137,85 +140,8 @@ Button
 }
 
 //honeycomb cluster on UserPage
-.honeycomb {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  max-width: 120px;
-  margin: 0 auto;
-  padding: 0;
-  transform: translateY(80px);
-}
-.honeycomb-cell {
-  -webkit-box-flex: 0;
-  flex: 01 250px;
-  max-width: 250px;
-  height: 137.5px;
-  margin: 65.4px 12.5px 25px;
-  position: relative;
-  padding: 0.5em;
-  text-align: center;
-  z-index: 1;
-  box-shadow: 0px 0px 15px 0 rgba(0, 0, 0, 0.1);
-}
-.honeycomb-cell_img {
-  object-fit: cover;
-  object-position: center;
-  filter: grayscale(100%);
-}
 
-.honeycomb-cell-title {
-  height: 100%;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-  word-break: break-word;
-  text-transform: uppercase;
-  color: white;
-  font-weight: 700;
-  font-size: 1.75em;
-  transition: opacity 350ms;
-}
-.honeycomb-cell-title > small {
-  font-weight: 300;
-  margin-top: 0.25em;
-}
-.honeycomb-cell::before,
-.honeycomb-cell::after {
-  content: "";
-}
-.honeycomb-cell::before,
-.honeycomb-cell::after,
-.honeycomb-cell_img {
-  top: -50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  -webkit-clip-path: polygon(
-    50% 0%,
-    100% 25%,
-    100% 75,
-    50% 100%,
-    0% 75%,
-    0% 25%
-  );
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75, 50% 100%, 0% 75%, 0% 25%);
-  z-index: -1;
-}
-
+//responsive 6:38
 /* end custom button effects */
 
 .btn_sizeMin {
@@ -242,11 +168,11 @@ Button
 .btn_asLink {
   padding: 0;
   border-width: 0;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid rgb(82, 160, 127);
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: #13ce9a;
 }
 
 .btn_asLink:hover {
@@ -280,7 +206,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-image: linear-gradient(90deg, #13ce9a, #00ffb8);
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0.4);
 }
@@ -288,4 +214,24 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------------
+Text
+-------------------------------------------------------------------------------- */
+.helpText {
+  background-color: rgb(168, 168, 168);
+  margin: 40px;
+  border-radius: 6px;
+}
+h2 {
+  color: rgb(0, 0, 0);
+  align-items: center;
+}
+
+.userInfo {
+  background-color: rgb(168, 168, 168);
+  border-radius: 8px;
+  align-items: center;
+  text-align: center;
 }

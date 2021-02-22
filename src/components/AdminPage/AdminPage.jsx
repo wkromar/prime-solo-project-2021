@@ -77,18 +77,29 @@ function AdminPage() {
   //DOM
   return (
     <div className="container">
-      <p>Add snacks from the Spoonacular API</p>
-      <button onClick={toAllSnacks}>To AllSnacks</button>
+      <h2 className="helpText">Add snacks from the Spoonacular API</h2>
+
+      <button className="btn" onClick={toAllSnacks}>
+        To AllSnacks
+      </button>
       <form onSubmit={newSearch}>
         <input
           type="text"
           value={searchItem}
           onChange={(event) => setSearchItem(event.target.value)}
         />
-        <button className="searchButton" type="Submit">
+        <button className=" btn searchButton" type="Submit">
           Search
         </button>
-        <button onClick={returnToList}>Go to Profile</button>
+
+        <button
+          className="btn"
+          onClick={() => {
+            history.push("/user");
+          }}
+        >
+          Home
+        </button>
       </form>
 
       {snackList?.map((snack) => {
@@ -111,7 +122,9 @@ function AdminPage() {
       })}
 
       <p>------------------------------------------------------------------</p>
-      <h2>Here is the list of all snacks stored in the database</h2>
+      <h2 className="helpText">
+        Here is the list of all snacks stored in the database
+      </h2>
       <div className="showSnacks">
         {AllSnacks?.map((editSnack) => {
           return (
