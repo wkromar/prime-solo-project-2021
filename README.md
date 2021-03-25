@@ -20,12 +20,14 @@ Before you get started, make sure you have the following software installed on y
 ## Create database and table
 
 Create a new database called `prime_app` and create a `user` table:
+Check the `detabase.sql` file within the project for all SQL queries used.
 
 ```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+CREATE TABLE "user"(
+"id" SERIAL PRIMARY KEY,
+"username" varchar(20) NOT NULL,
+"password" varchar(8) NOT NULL,
+"is_admin" varchar(5) DEFAULT ('false')
 );
 ```
 
