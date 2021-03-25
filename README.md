@@ -130,7 +130,7 @@ This code is also heavily commented. We recommend reading through the comments, 
   - LogOutButton/LogOutButton
   - ProtectedRoute/ProtectedRoute
 
-## Aknowledgements
+## Aknowledgments
     - Prime Digital Academy for teaching me Full-Stack Development
     - Dane Smith for his constant support
     - Zhu Cohort for their support and positivity
