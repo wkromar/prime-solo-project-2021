@@ -2,7 +2,7 @@
 # EDA Project
 Due to the pandemic, it is imperative that people spend less time in enclosed busy places. Snackr is an App designed to keep track of a users selected items to reduce their time spent browsing shelves in grocery or convenience stores. Users can browse and favorite tasty items to help create a list of potential choices. This stops the user from slowing down their trip due to indecision. They know what they want coming intoo the store.
 
-# Members
+# Author
 - [Woody Kromar](https://github.com/wkromar)
 
 ## Prerequisites
