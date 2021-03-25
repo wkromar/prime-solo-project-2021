@@ -83,9 +83,9 @@ This code is also heavily commented. We recommend reading through the comments, 
 
 ## Deployment
 
-## Production Build
 
 
+### Heroku Prerequisite
 1. Sign up for an account on [Heroku.com](https://www.heroku.com/)
 2. Install Heroku CLI by typing `brew tap heroku/brew && brew install heroku` in Terminal
 
@@ -101,6 +101,7 @@ Run the following commands from within your project folder.
 4. In terminal, type `git push heroku main`
 5. You will need to add a MONGO_URI to your config env on heroku.
 
+## Production Build
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
@@ -128,23 +129,4 @@ This code is also heavily commented. We recommend reading through the comments, 
   - RegisterPage/RegisterPage
   - LogOutButton/LogOutButton
   - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-### Heroku Prerequisite
-
-1. Sign up for an account on [Heroku.com](https://www.heroku.com/)
-2. Install Heroku CLI by typing `brew tap heroku/brew && brew install heroku` in Terminal
-
-- [Additional installation notes and troubleshooting](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-
-> Note: Your project also needs to have a git repository.
-
-Run the following commands from within your project folder.
-
-1. Authenticate by typing `heroku login` in Terminal
-2. In terminal, navigate to your project folder and type `heroku create`
-3. Type `git remote -v` to ensure it added successfully
-4. In terminal, type `git push heroku main`
-5. You will need to add a MONGO_URI to your config env on heroku.
 
